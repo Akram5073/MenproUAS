@@ -8,7 +8,7 @@
 </div>
 
 <div class="d-flex justify-content-end px-4 mb-3">
-    <a href="<?php echo site_url('pelanggan/add'); ?>" class="btn btn-success btn-sm d-flex align-items-center">
+    <a href="<?php echo site_url('index.php/add_pelanggan'); ?>" class="btn btn-success btn-sm d-flex align-items-center">
         <i class="bi bi-plus-circle me-2"></i> Add New Pelanggan
     </a>
 </div>

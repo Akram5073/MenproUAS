@@ -21,4 +21,12 @@ class M_pelanggan extends CI_Model {
         $this->db->like('nama', $search);
         return $this->db->count_all_results('Pelanggan');
     }
+
+    public function cek_email($email) {
+        return $this->db->get_where('pelanggan', ['email' => $email])->row();
+    }
+
+    public function tambah_pelanggan($data) {
+        return $this->db->insert('pelanggan', $data);
+    }
 }
