@@ -2,13 +2,13 @@
     <div class="card">
         <div class="card-header bg-primary text-white">Add Pembayaran</div>
         <div class="card-body">
-            <?php if (isset($success)): ?>
+            <?php if (!empty($success)): ?>
                 <div class="alert alert-success"><?= $success; ?></div>
-            <?php elseif (isset($error)): ?>
+            <?php elseif (!empty($error)): ?>
                 <div class="alert alert-danger"><?= $error; ?></div>
             <?php endif; ?>
 
-            <?= form_open('pembayaran'); ?>
+            <?= form_open('index.php/pembayaran'); ?>
                 <div class="mb-3">
                     <label for="id_transaksi" class="form-label">Transaction ID</label>
                     <select class="form-select" name="id_transaksi" required>
@@ -37,12 +37,12 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="total_bayar" class="form-label">Total Pembayaran</label>
+                    <label class="form-label">Total Pembayaran</label>
                     <input type="text" class="form-control" value="<?= htmlspecialchars($jumlah_bayar); ?>" readonly>
                 </div>
 
                 <div class="mb-3">
-                    <label for="denda" class="form-label">Denda (Jika Ada)</label>
+                    <label class="form-label">Denda (Jika Ada)</label>
                     <input type="text" class="form-control" value="<?= htmlspecialchars($denda); ?>" readonly>
                 </div>
 

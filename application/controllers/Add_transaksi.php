@@ -20,7 +20,7 @@ class Add_transaksi extends CI_Controller {
 
         if ($this->input->post()) {
             $id_pelanggan = $this->input->post('id_pelanggan');
-            $tanggal_sewa = $this->input->post('tanggal_sewa');-
+            $tanggal_sewa = $this->input->post('tanggal_sewa');
             $tanggal_kembali = $this->input->post('tanggal_kembali');
             $id_playstation = $this->input->post('id_playstation');
             $jumlah_item = $this->input->post('jumlah_item');

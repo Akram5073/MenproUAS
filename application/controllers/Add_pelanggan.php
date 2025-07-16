@@ -38,7 +38,7 @@ class Add_pelanggan extends CI_Controller{
                     ];
                     if ($this->M_add_pelanggan->tambah_pelanggan($data)) {
                         $this->session->set_flashdata('success', 'Pelanggan berhasil ditambahkan!');
-                        redirect('pelanggan/tambah');
+                        redirect('index.php/add_pelanggan');
                     } else {
                         $this->session->set_flashdata('error', 'Gagal menyimpan data!');
                     }
