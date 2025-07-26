@@ -4,9 +4,8 @@
             <h5 class="mb-0">Data Transaksi</h5>
         </div>
         <div class="card-body">
-            <div class="d-flex justify-content-between mb-3">
-                <h6 class="text-secondary">Tabel berikut menampilkan data transaksi lengkap beserta detail item dan pembayaran.</h6>
-                <a href="<?php echo base_url('index.php/add_transaksi'); ?>" class="btn btn-success">+ Add New Transaksi</a>
+            <div class="d-flex justify-content-end px-4 mb-3">
+                <a href="<?php echo base_url('index.php/add_transaksi'); ?>" class="btn btn-success btn-sm d-flex align-items-center">+ Add New Transaksi</a>
             </div>
             <table id="transaksiTable" class="table table-bordered table-hover table-striped">
                 <thead class="table-light">

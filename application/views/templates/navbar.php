@@ -44,15 +44,15 @@
 
                 <?php if ($CI->session->userdata('logged_in')): ?>
                     <li class="nav-item">
-                        <span class="nav-link px-3 text-white">
-                            <i class="bi bi-person-circle me-2"></i>
-                            <?= $CI->session->userdata('nama'); ?>
-                        </span>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link px-3 text-danger" href="<?= base_url('index.php/auth/login'); ?>">
                             <i class="bi bi-box-arrow-right me-2"></i>Logout
                         </a>
+                    </li>
+                    <li class="nav-item margin-left-3">
+                        <span class="nav-link px-3 text-white fw-bold font-size-2 d-flex align-items-center">
+                            <i class="bi bi-person-circle me-2"></i>
+                            <?= $CI->session->userdata('nama'); ?>
+                        </span>
                     </li>
                 <?php else: ?>
                     <li class="nav-item">
