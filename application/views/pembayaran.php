@@ -14,7 +14,8 @@
                     <select class="form-select" name="id_transaksi" required>
                         <option value="">Select Transaction</option>
                         <?php foreach ($transaksi as $row): ?>
-                            <option value="<?= $row['id_transaksi']; ?>" <?= set_select('id_transaksi', $row['id_transaksi']); ?>>
+                            <option value="<?= $row['id_transaksi']; ?>" <?= $id_transaksi == $row['id_transaksi'] ? 'selected' : ''; ?>>
+
                                 ID <?= $row['id_transaksi']; ?> - Pelanggan <?= $row['id_pelanggan']; ?>
                             </option>
                         <?php endforeach; ?>
@@ -23,31 +24,40 @@
 
                 <div class="mb-3">
                     <label for="tanggal_bayar" class="form-label">Tanggal Pembayaran</label>
-                    <input type="date" class="form-control" name="tanggal_bayar" value="<?= set_value('tanggal_bayar'); ?>" required>
+                    <input type="date" class="form-control" name="tanggal_bayar" value="<?= $tanggal_bayar; ?>" required>
+
                 </div>
 
                 <div class="mb-3">
                     <label for="metode_bayar" class="form-label">Metode Pembayaran</label>
                     <select class="form-select" name="metode_bayar" required>
                         <option value="">Select Payment Method</option>
-                        <option value="Cash" <?= set_select('metode_bayar', 'Cash'); ?>>Cash</option>
-                        <option value="Transfer" <?= set_select('metode_bayar', 'Transfer'); ?>>Transfer</option>
-                        <option value="E-Wallet" <?= set_select('metode_bayar', 'E-Wallet'); ?>>E-Wallet</option>
+                        <option value="Cash" <?= $metode_bayar == 'Cash' ? 'selected' : ''; ?>>Cash</option>
+                        <option value="Transfer" <?= $metode_bayar == 'Transfer' ? 'selected' : ''; ?>>Transfer</option>
+                        <option value="E-Wallet" <?= $metode_bayar == 'E-Wallet' ? 'selected' : ''; ?>>E-Wallet</option>
+
                     </select>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Total Pembayaran</label>
-                    <input type="text" class="form-control" value="<?= htmlspecialchars($jumlah_bayar); ?>" readonly>
+                    <p class="form-control-plaintext">
+                        Rp <?= $jumlah_bayar !== '' ? number_format($jumlah_bayar, 0, ',', '.') : '0'; ?>
+                    </p>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Denda (Jika Ada)</label>
-                    <input type="text" class="form-control" value="<?= htmlspecialchars($denda); ?>" readonly>
+                    <p class="form-control-plaintext">
+                        Rp <?= $denda !== '' ? number_format($denda, 0, ',', '.') : '0'; ?>
+                    </p>
                 </div>
 
-                <button type="submit" name="calculate" class="btn btn-secondary">Hitung Total</button>
-                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                <input type="hidden" name="jumlah_bayar" value="<?= $jumlah_bayar; ?>">
+                <input type="hidden" name="denda" value="<?= $denda; ?>">
+
+                <button type="submit" name="calculate" value="1" class="btn btn-secondary">Hitung Total</button>
+                <button type="submit" name="submit" value="1" class="btn btn-primary">Submit</button>
             <?= form_close(); ?>
         </div>
     </div>

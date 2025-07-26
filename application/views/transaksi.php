@@ -18,6 +18,7 @@
                         <th>Tanggal Kembali</th>
                         <th>Tanggal Bayar</th>
                         <th>Metode Bayar</th>
+                        <th>Jaminan</th>
                         <th>Jumlah Bayar</th>
                         <th>Status</th>
                     </tr>
@@ -33,6 +34,7 @@
                                 <td><?php echo $row->tanggal_kembali; ?></td>
                                 <td><?php echo ($row->tanggal_bayar ?? '<span class="text-danger">Belum Dibayar</span>'); ?></td>
                                 <td><?php echo ($row->metode_bayar ?? '-'); ?></td>
+                                <td><?php echo ($row->jaminan ?? '-'); ?></td>
                                 <td><?php echo ($row->jumlah_bayar ? '<span class="fw-bold text-success">Rp ' . number_format($row->jumlah_bayar, 2, ',', '.') . '</span>' : '-'); ?></td>
                                 <td><?php echo $row->status; ?></td>
                             </tr>

@@ -26,7 +26,7 @@
                     <input type="text" class="form-control" id="no_telepon" name="no_telepon" required>
                 </div>
                 <button type="submit" class="btn btn-success">Tambah</button>
-                <a href="<?= base_url('index.php/add_pelanggan') ?>" class="btn btn-secondary">Kembali</a>
+                <a href="<?= base_url('index.php/pelanggan') ?>" class="btn btn-secondary">Kembali</a>
             </form>
         </div>
     </div>

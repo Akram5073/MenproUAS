@@ -19,6 +19,7 @@ class M_transaksi extends CI_Model {
                 pb.tanggal_bayar,
                 pb.metode_bayar,
                 pb.jumlah_bayar,
+                t.jaminan,  -- Ambil dari tabel transaksi, BUKAN pb
                 t.status
             FROM transaksi t
             JOIN pelanggan p ON t.id_pelanggan = p.id_pelanggan
@@ -27,6 +28,8 @@ class M_transaksi extends CI_Model {
             LEFT JOIN pembayaran pb ON t.id_transaksi = pb.id_transaksi
             GROUP BY t.id_transaksi
             ORDER BY t.tanggal_sewa DESC
+
+
         ";
 
         return $this->db->query($sql)->result();

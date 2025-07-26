@@ -48,6 +48,16 @@
                 </div>
             </div>
 
+            <div class="mb-3">
+                <label>Jaminan</label>
+                <select name="jaminan" class="form-select" required>
+                    <option value="">-- Pilih Jaminan --</option>
+                    <option value="KTP">KTP</option>
+                    <option value="Kartu Pelajar">Kartu Pelajar</option>
+                    <option value="Kartu Mahasiswa">Kartu Mahasiswa</option>
+                </select>
+            </div>
+
             <button type="button" id="add-item" class="btn btn-secondary mb-3">Tambah Item</button>
             <button type="submit" class="btn btn-success">Simpan Transaksi</button>
             <?= form_close(); ?>

@@ -9,7 +9,6 @@ class Add_transaksi extends CI_Controller {
         $this->load->model('M_pelanggan');
         $this->load->model('M_playstation');
         $this->load->helper(['url', 'form']);
-
     }
 
     public function index() {
@@ -22,14 +21,23 @@ class Add_transaksi extends CI_Controller {
             $id_pelanggan = $this->input->post('id_pelanggan');
             $tanggal_sewa = $this->input->post('tanggal_sewa');
             $tanggal_kembali = $this->input->post('tanggal_kembali');
+            $jaminan = $this->input->post('jaminan');  // Tambahan input jaminan
             $id_playstation = $this->input->post('id_playstation');
             $jumlah_item = $this->input->post('jumlah_item');
 
-            if (!$id_pelanggan || !$tanggal_sewa || !$tanggal_kembali || empty($id_playstation) || empty($jumlah_item)) {
+            // Validasi input wajib
+            if (!$id_pelanggan || !$tanggal_sewa || !$tanggal_kembali || !$jaminan || empty($id_playstation) || empty($jumlah_item)) {
                 $data['error'] = 'Semua field wajib diisi.';
             } else {
-                $result = $this->M_add_transaksi->simpanTransaksi($id_pelanggan, $tanggal_sewa, $tanggal_kembali, $id_playstation, $jumlah_item);
-                $data['success'] = $result ? 'Transaksi berhasil disimpan.' : 'Gagal menyimpan transaksi.';
+                $result = $this->M_add_transaksi->simpanTransaksi(
+                    $id_pelanggan, $tanggal_sewa, $tanggal_kembali, $id_playstation, $jumlah_item, $jaminan
+                );
+
+                if ($result['status']) {
+                    $data['success'] = 'Transaksi berhasil disimpan.';
+                } else {
+                    $data['error'] = 'Gagal menyimpan transaksi: ' . $result['message'];
+                }
             }
         }
 
