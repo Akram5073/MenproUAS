@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Add_pelanggan extends CI_Controller{
+class Add_pelanggan extends CI_Controller {
 
     public function __construct()
     {
@@ -9,6 +9,11 @@ class Add_pelanggan extends CI_Controller{
         $this->load->model('M_add_pelanggan');
         $this->load->library('session');
         $this->load->helper(['form', 'url']);
+
+        // Cek apakah admin sudah login
+        if (!$this->session->userdata('logged_in')) {
+            redirect('index.php/auth/login');
+        }
     }
 
     public function index()
@@ -18,6 +23,7 @@ class Add_pelanggan extends CI_Controller{
             $alamat = trim($this->input->post('alamat'));
             $email = trim($this->input->post('email'));
             $no_telepon = trim($this->input->post('no_telepon'));
+            $id_admin = $this->session->userdata('id_admin'); // Ambil dari session
 
             // Validasi manual
             if (empty($nama) || empty($alamat) || empty($email) || empty($no_telepon)) {
@@ -34,7 +40,8 @@ class Add_pelanggan extends CI_Controller{
                         'nama' => $nama,
                         'alamat' => $alamat,
                         'email' => $email,
-                        'no_telepon' => $no_telepon
+                        'no_telepon' => $no_telepon,
+                        'id_admin' => $id_admin // Simpan ID admin
                     ];
                     if ($this->M_add_pelanggan->tambah_pelanggan($data)) {
                         $this->session->set_flashdata('success', 'Pelanggan berhasil ditambahkan!');

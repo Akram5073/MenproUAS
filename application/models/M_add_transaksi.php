@@ -5,30 +5,32 @@ class M_add_transaksi extends CI_Model {
 
     public function __construct() {
         parent::__construct();
+        $this->load->database(); // Pastikan database diload
     }
 
     /**
      * Simpan transaksi utama dan detail transaksi ke database
-     * 
      * @param int $id_pelanggan
      * @param string $tanggal_sewa
      * @param string $tanggal_kembali
      * @param array $id_playstation
      * @param array $jumlah_item
      * @param string $jaminan
+     * @param int $id_admin => tambahan id admin
      * @return array ['status' => bool, 'message' => string (optional)]
      */
-    public function simpanTransaksi($id_pelanggan, $tanggal_sewa, $tanggal_kembali, $id_playstation, $jumlah_item, $jaminan) {
+    public function simpanTransaksi($id_pelanggan, $tanggal_sewa, $tanggal_kembali, $id_playstation, $jumlah_item, $jaminan, $id_admin) {
         $this->db->trans_begin(); // Start transaction
 
         try {
-            // 1. Insert transaksi utama dengan kolom jaminan
+            // 1. Insert transaksi utama dengan jaminan dan id_admin
             $this->db->insert('transaksi', [
                 'id_pelanggan' => $id_pelanggan,
                 'tanggal_sewa' => $tanggal_sewa,
                 'tanggal_kembali' => $tanggal_kembali,
                 'status' => 'Proses',
-                'jaminan' => $jaminan  // Tambahan kolom jaminan
+                'jaminan' => $jaminan,
+                'id_admin' => $id_admin // Tambah siapa admin yang input
             ]);
 
             $id_transaksi = $this->db->insert_id(); // Ambil ID transaksi baru

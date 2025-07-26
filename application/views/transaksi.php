@@ -11,6 +11,7 @@
             <table id="transaksiTable" class="table table-bordered table-hover table-striped">
                 <thead class="table-light">
                     <tr>
+                        <th>ID Admin</th>
                         <th>ID Transaksi</th>
                         <th>Nama Pelanggan</th>
                         <th>Detail Item</th>
@@ -27,6 +28,7 @@
                     <?php if (!empty($transaksi)): ?>
                         <?php foreach ($transaksi as $row): ?>
                             <tr>
+                                <td><?php echo $row->id_admin; ?></td>
                                 <td><?php echo $row->id_transaksi; ?></td>
                                 <td><?php echo $row->pelanggan_nama; ?></td>
                                 <td><?php echo $row->detail_item; ?></td>

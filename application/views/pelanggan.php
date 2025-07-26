@@ -27,7 +27,8 @@
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Id Admin</th>
+                        <th>ID Pelanggan</th>
                         <th>Nama</th>
                         <th>Alamat</th>
                         <th>Email</th>
@@ -39,6 +40,7 @@
                     <?php if (count($pelanggan) > 0): ?>
                         <?php foreach ($pelanggan as $p): ?>
                             <tr>
+                                <td><?php echo htmlspecialchars($p['id_admin']); ?></td>
                                 <td><?php echo htmlspecialchars($p['id_pelanggan']); ?></td>
                                 <td><?php echo htmlspecialchars($p['nama']); ?></td>
                                 <td><?php echo htmlspecialchars($p['alamat']); ?></td>
