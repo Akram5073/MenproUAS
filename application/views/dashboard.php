@@ -1,39 +1,48 @@
 <div class="content">
     <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card bg-info text-white card-hover">
-                    <div class="card-body text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-0" style="width: 264px;">
+                <div class="card bg-info text-white card-hover text-center">
+                    <div class="card-body">
                         <h5 class="card-title">Admin</h5>
                         <h3><?= $adminCount; ?></h3>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card bg-success text-white card-hover">
-                    <div class="card-body text-center">
+            <div class="col-md-0" style="width: 264px;">
+                <div class="card bg-success text-white card-hover text-center">
+                    <div class="card-body">
                         <h5 class="card-title">Pelanggan</h5>
                         <h3><?= $pelangganCount; ?></h3>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card bg-warning text-white card-hover">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">PlayStation</h5>
-                        <h3><?= $psCount; ?></h3>
+            <div class="col-md-0" style="width: 264px;">
+                <div class="card bg-warning text-white card-hover text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">PlayStation 3</h5>
+                        <h3><?= $ps3Stock; ?>/10</h3>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card bg-danger text-white card-hover">
-                    <div class="card-body text-center">
+            <div class="col-md-0" style="width: 264px;">
+                <div class="card bg-warning text-white card-hover text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">PlayStation 4</h5>
+                        <h3><?= $ps4Stock; ?>/5</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-0" style="width: 264px;">
+                <div class="card bg-danger text-white card-hover text-center">
+                    <div class="card-body">
                         <h5 class="card-title">Transaksi</h5>
                         <h3><?= $transaksiCount; ?></h3>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <!-- Tabel Pelanggan -->
         <div class="row mt-4">

@@ -19,7 +19,6 @@
                 </select>
             </div>
             
-
             <div class="mb-3">
                 <label>Tanggal Sewa</label>
                 <input type="date" name="tanggal_sewa" class="form-control" required>

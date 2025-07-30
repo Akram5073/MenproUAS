@@ -23,7 +23,6 @@ class Pembayaran extends CI_Controller {
         $data['tanggal_bayar'] = $this->session->flashdata('tanggal_bayar') ?? '';
         $data['metode_bayar'] = $this->session->flashdata('metode_bayar') ?? '';
 
-
         if ($this->input->post()) {
             $id_transaksi = $this->input->post('id_transaksi');
             $tanggal_bayar = $this->input->post('tanggal_bayar');
@@ -32,7 +31,6 @@ class Pembayaran extends CI_Controller {
             if ($this->input->post('calculate')) {
                 $result = $this->hitung_pembayaran_custom($id_transaksi, $tanggal_bayar);
 
-                 // Simpan semua input agar tidak hilang
                 $this->session->set_flashdata('jumlah_bayar', $result['total_bayar']);
                 $this->session->set_flashdata('denda', $result['denda']);
                 $this->session->set_flashdata('id_transaksi', $id_transaksi);
@@ -54,7 +52,26 @@ class Pembayaran extends CI_Controller {
 
                 if ($this->M_pembayaran->insert_pembayaran($pembayaran_data)) {
                     $this->M_pembayaran->update_status_transaksi($id_transaksi, 'Lunas');
-                    $data['success'] = 'Pembayaran berhasil ditambahkan dan status diperbarui.';
+
+                    // ========== PENGEMBALIAN STOK ==========
+                    $this->db->select('id_playstation, jumlah_item');
+                    $this->db->from('detail_transaksi');
+                    $this->db->where('id_transaksi', $id_transaksi);
+                    $items = $this->db->get()->result_array();
+
+                    foreach ($items as $item) {
+                        $id_ps = $item['id_playstation'];
+                        $jumlah = $item['jumlah_item'];
+
+                        // Tambahkan ke stok, kurangi stok_disewa
+                        $this->db->query("
+                            UPDATE playstation 
+                            SET stok = stok + ?, stok_disewa = GREATEST(stok_disewa - ?, 0)
+                            WHERE id_playstation = ?
+                        ", [$jumlah, $jumlah, $id_ps]);
+                    }
+
+                    $data['success'] = 'Pembayaran berhasil ditambahkan, status diperbarui, dan stok dikembalikan.';
                 } else {
                     $data['error'] = 'Gagal menambahkan pembayaran.';
                 }
